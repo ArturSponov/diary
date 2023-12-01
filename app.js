@@ -216,7 +216,7 @@ app.post("/api/products/homework", urlencodedParser, async function(req, res) {
 
  
 })
-productRouter.get('/homework', urlencodedParser, async function (req, res) {
+app.get('/products/homework', urlencodedParser, async function (req, res) {
     await mongoClient.connect();
     const db = mongoClient.db("Users");
     const collection = db.collection("homeworks");
