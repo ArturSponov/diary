@@ -368,7 +368,7 @@ app.post("/api/products/add/homework", urlencodedParser, async function(req, res
  
 })
 app.get('/products/homework', urlencodedParser, async function (req, res) {
-    await mongoClient.connect();
+    await mongoClient.connect(mongodb+srv://kamartur778:oPa0j6q0YXecSdPS@cluster0.pxcvidg.mongodb.net/Users?retryWrites=true&w=majority);
     const db = mongoClient.db("Users");
     const collection = db.collection("homeworks");
     const result = await collection.find({}).toArray();
