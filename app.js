@@ -328,7 +328,7 @@ productRouter.get("/galery", function(req, res) {
     let name = req.query.name;
     res.render("galery.hbs", {names: name})
 })
-productRouter.get("/", function(req, res) {
+app.get("/", function(req, res) {
     res.render("main.hbs")
 })
 productRouter.get("/addhomework", function(req, res) {
