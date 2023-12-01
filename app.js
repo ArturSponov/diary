@@ -15,7 +15,8 @@ const urlencodedParser = express.urlencoded({extended: false});
 const url = "mongodb+srv://kamartur778:oPa0j6q0YXecSdPS@cluster0.pxcvidg.mongodb.net/?retryWrites=true&w=majority";     
 const mongoClient = new MongoClient(url);  
 const objectId = require("mongodb").ObjectId;
-app.set("view engine", "hbs");                            
+app.set("view engine", "hbs");        
+               
  
  
 
@@ -99,7 +100,11 @@ app.post("/add/auth", urlencodedParser, async function (request, response) {
         const collection = db.collection("users");
         const users = await collection.findOne({name: request.body.Login, age: request.body.pass})
         if (users) {
-            if (users.role == 'admin') {
+            if (users.role === "mainadmin") {
+                response.redirect("/products/adminpanel" );
+                console.log('dasdasd')
+            }
+            else if (users.role == 'admin') {
                 response.redirect("/products/homeworkadmin" );
 
             }else if (users.role != 'admin'|| users.role == 'user'){
@@ -120,7 +125,153 @@ app.post("/add/auth", urlencodedParser, async function (request, response) {
         response.sendStatus(500);
     }  
 })
-app.use("/products", productRouter);
+
+
+app.get('/products/adminpanel', urlencodedParser, async function(req, res) {
+    try {
+        await mongoClient.connect();
+        const db = mongoClient.db("Users");
+        const usercollection = db.collection("users");
+        const homecollection = db.collection("homeworks");
+        const homeworks = await homecollection.find({}).toArray();
+        const usersall = await usercollection.find({role: 'user'}).toArray();
+        const admins = await usercollection.find({role: 'admin'}).toArray();
+
+        const userId = []   
+    
+        if (homeworks && usersall && admins) {
+            homeworks.forEach(obj => {
+  
+                userId.push(obj._id.toString());
+                // console.log(obj._id.toString());
+                
+            });
+        
+        console.log(usersall)
+            res.render('adminpanel.hbs', {objects:  homeworks, name: homeworks, id: userId, users: usersall, admins: admins});
+        }
+    } catch (error) {
+        console.error("Ошибка при подключении к базе данных:", error);
+        res.status(500).send("Internal Server Error");
+    }
+    
+})
+productRouter.get("/adminpanel/:id",urlencodedParser, async(req, res)=>{
+    await mongoClient.connect();
+    const db = mongoClient.db("Users");
+    const collection = db.collection("homeworks"); 
+    const id = new objectId(req.params.id);
+    // получаем одного пользователя по id
+    const result = await collection.findOneAndDelete({_id: id})
+    // const user = await User.findById(id);
+    // if(user) res.send(user);
+    // else res.sendStatus(404);
+    console.log(result)
+    console.log(id)
+    if (result) {
+        res.redirect('/products/adminpanel')
+    }
+});
+app.get('/products/adminpanel/user/:id', urlencodedParser, async function(req, res) {
+    
+   
+    // try {
+        const userId = req.params.id;
+    //      console.log(userId)
+        await mongoClient.connect();
+        const db = mongoClient.db("Users");
+        const collection = db.collection("users");
+        const { ObjectId } = require('mongodb');
+        const objectId = new ObjectId(userId);
+    //     const result = await collection.findOneAndUpdate({ _id: userId },{ $set: { role: 'admin' } });
+
+    //     if (result) {
+    //         res.redirect('/products/adminpanel');
+    //     } else {
+    //         res.status(404).send('Пользователь не найден');
+    //     }
+    // } catch (error) {
+    //     console.error(error);
+    //     res.status(500).send('Ошибка сервера');
+    // }
+    const user = await collection.findOneAndUpdate({ _id: objectId }, { $set: { role: 'admin' } });
+if (user) {
+    // Пользователь найден
+    console.log('изменено');
+    res.redirect('/products/adminpanel')
+} else {
+    // Пользователь не найден
+    console.log('Пользователь не найден');
+    res.status(404).send('Пользователь не найден');
+    return;
+}
+
+});
+app.get('/products/adminpanel/admin/:id', urlencodedParser, async (req, res) => {
+        // try {
+                const userId = req.params.id;
+            //      console.log(userId)
+                await mongoClient.connect();
+                const db = mongoClient.db("Users");
+                const collection = db.collection("users");
+                const { ObjectId } = require('mongodb');
+                const objectId = new ObjectId(userId);
+            //     const result = await collection.findOneAndUpdate({ _id: userId },{ $set: { role: 'admin' } });
+        
+            //     if (result) {
+            //         res.redirect('/products/adminpanel');
+            //     } else {
+            //         res.status(404).send('Пользователь не найден');
+            //     }
+            // } catch (error) {
+            //     console.error(error);
+            //     res.status(500).send('Ошибка сервера');
+            // }
+            const user = await collection.findOneAndUpdate({ _id: objectId }, { $set: { role: 'user' } });
+        if (user) {
+            // Пользователь найден
+            console.log('изменено');
+            res.redirect('/products/adminpanel')
+        } else {
+            // Пользователь не найден
+            console.log('Пользователь не найден');
+            res.status(404).send('Пользователь не найден');
+            return;
+        }
+})
+app.get('/products/adminpanel/deleteadmin/:id', urlencodedParser, async (req, res) => {
+    await mongoClient.connect();
+    const db = mongoClient.db("Users");
+    const collection = db.collection("users"); 
+    const id = new objectId(req.params.id);
+    // получаем одного пользователя по id
+    const result = await collection.findOneAndDelete({_id: id})
+    // const user = await User.findById(id);
+    // if(user) res.send(user);
+    // else res.sendStatus(404);
+    console.log(result)
+    console.log(id)
+    if (result) {
+        res.redirect('/products/adminpanel')
+    }
+})
+app.get('/products/adminpanel/deleteuser/:id', urlencodedParser, async (req, res) => {
+    await mongoClient.connect();
+    const db = mongoClient.db("Users");
+    const collection = db.collection("users"); 
+    const id = new objectId(req.params.id);
+    // получаем одного пользователя по id
+    const result = await collection.findOneAndDelete({_id: id})
+    // const user = await User.findById(id);
+    // if(user) res.send(user);
+    // else res.sendStatus(404);
+    console.log(result)
+    console.log(id)
+    if (result) {
+        res.redirect('/products/adminpanel')
+    }
+})
+
 productRouter.get("/newspaper", function(req, res) {
     res.render("newspaper.hbs")
 })
@@ -176,7 +327,7 @@ productRouter.get("/galery", function(req, res) {
     let name = req.query.name;
     res.render("galery.hbs", {names: name})
 })
-productRouter.get("/", function(req, res) {
+app.get("/", function(req, res) {
     res.render("main.hbs")
 })
 productRouter.get("/addhomework", function(req, res) {
@@ -187,7 +338,7 @@ productRouter.get("/deletehomework", function(req, res) {
     
     res.render("deletehomework.hbs")
 })
-app.post("/api/products/homework", urlencodedParser, async function(req, res) {
+app.post("/api/products/add/homework", urlencodedParser, async function(req, res) {
     await mongoClient.connect();
     const db = mongoClient.db("Users");
     const collection = db.collection("users");
@@ -203,7 +354,7 @@ app.post("/api/products/homework", urlencodedParser, async function(req, res) {
     }else{
         const user = {name: `${req.body.Login}`, age: `${req.body.pass}`, role: `user`}
         const   adduser = await collection.insertOne(user);
-     
+        
         
             res.render('class.hbs', {
                 message: "Пользователь зарегестрирован"
@@ -248,7 +399,7 @@ productRouter.post("/homework", urlencodedParser, async function (req, res) {
         alert("Не заполнено")
     }
 })
-
+app.use("/products", productRouter);
 // productRouter.post("/homework", urlencodedParser, async function(req, res) {
 //     try {
 //         await mongoClient.connect();
@@ -280,4 +431,4 @@ productRouter.post("/homework", urlencodedParser, async function (req, res) {
 //         process.exit();  
 //  });
 run().catch(console.error);
-app.listen(3001, ()=>console.log("Сервер запущен..."));             
+app.listen(3001, ()=>console.log("Сервер запущен..."));            
