@@ -12,7 +12,8 @@ app.use(express.static(path.resolve(__dirname + '/public')))
 const productRouter = express.Router();
 const MongoClient = require("mongodb").MongoClient;
 const urlencodedParser = express.urlencoded({extended: false});
-const url = "mongodb+srv://kamartur778:oPa0j6q0YXecSdPS@cluster0.pxcvidg.mongodb.net/Users?retryWrites=true&w=majority";     
+const url = 'mongodb://localhost:27017/Users';
+    
 const mongoClient = new MongoClient(url);  
 const objectId = require("mongodb").ObjectId;
 app.set("view engine", "hbs");        
@@ -327,7 +328,7 @@ productRouter.get("/galery", function(req, res) {
     let name = req.query.name;
     res.render("galery.hbs", {names: name})
 })
-app.get("/", function(req, res) {
+productRouter.get("/", function(req, res) {
     res.render("main.hbs")
 })
 productRouter.get("/addhomework", function(req, res) {
