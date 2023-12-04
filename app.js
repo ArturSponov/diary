@@ -35,7 +35,7 @@ async function run() {
         await mongoClient.close();             
     }
 }
-productRouter.get("/add/registration", urlencodedParser, async function (request, response) {
+app.get("/add/registration", urlencodedParser, async function (request, response) {
     // const collection = request.app.locals.collection;
 
     try{
@@ -77,7 +77,7 @@ productRouter.get("/add/registration", urlencodedParser, async function (request
 //         response.sendStatus(500);
 //     } 
 // })
-productRouter.get("/add/login", async function (request, response) {
+app.get("/add/login", async function (request, response) {
     try{
         await mongoClient.connect();
         const db = mongoClient.db("Users");
@@ -102,14 +102,14 @@ app.post("/add/auth", urlencodedParser, async function (request, response) {
         const users = await collection.findOne({name: request.body.Login, age: request.body.pass})
         if (users) {
             if (users.role === "mainadmin") {
-                response.redirect("/products/adminpanel" );
+                response.redirect("/adminpanel" );
                 console.log('dasdasd')
             }
             else if (users.role == 'admin') {
-                response.redirect("/products/homeworkadmin" );
+                response.redirect("/homeworkadmin" );
 
             }else if (users.role != 'admin'|| users.role == 'user'){
-                response.redirect('/products/homework')
+                response.redirect('/homework')
             }
         } else {
             response.render('classi.hbs', {
@@ -128,7 +128,7 @@ app.post("/add/auth", urlencodedParser, async function (request, response) {
 })
 
 
-app.get('/products/adminpanel', urlencodedParser, async function(req, res) {
+app.get('/adminpanel', urlencodedParser, async function(req, res) {
     try {
         await mongoClient.connect();
         const db = mongoClient.db("Users");
@@ -157,7 +157,7 @@ app.get('/products/adminpanel', urlencodedParser, async function(req, res) {
     }
     
 })
-productRouter.get("/adminpanel/:id",urlencodedParser, async(req, res)=>{
+app.get("/adminpanel/:id",urlencodedParser, async(req, res)=>{
     await mongoClient.connect();
     const db = mongoClient.db("Users");
     const collection = db.collection("homeworks"); 
@@ -273,10 +273,10 @@ app.get('/products/adminpanel/deleteuser/:id', urlencodedParser, async (req, res
     }
 })
 
-productRouter.get("/newspaper", function(req, res) {
+app.get("/newspaper", function(req, res) {
     res.render("newspaper.hbs")
 })
-productRouter.get("/homeworkadmin", async function(request, response) {
+app.get("/homeworkadmin", async function(request, response) {
     try {
         await mongoClient.connect();
         const db = mongoClient.db("Users");
@@ -305,7 +305,7 @@ productRouter.get("/homeworkadmin", async function(request, response) {
     response.status(500).send('Ошибка сервера');
     } 
      
-    productRouter.get("/homeworkadmin/:id",urlencodedParser, async(req, res)=>{
+    app.get("/homeworkadmin/:id",urlencodedParser, async(req, res)=>{
         await mongoClient.connect();
         const db = mongoClient.db("Users");
         const collection = db.collection("homeworks"); 
@@ -324,22 +324,22 @@ productRouter.get("/homeworkadmin", async function(request, response) {
     }); 
 
 })
-productRouter.get("/galery", function(req, res) {
+app.get("/galery", function(req, res) {
     let name = req.query.name;
     res.render("galery.hbs", {names: name})
 })
 app.get("/", function(req, res) {
     res.render("main.hbs")
 })
-productRouter.get("/addhomework", function(req, res) {
+app.get("/addhomework", function(req, res) {
     
     res.render("addhomework.hbs")
 })
-productRouter.get("/deletehomework", function(req, res) {
+app.get("/deletehomework", function(req, res) {
     
     res.render("deletehomework.hbs")
 })
-app.post("/api/products/add/homework", urlencodedParser, async function(req, res) {
+app.post("/api/add/homework", urlencodedParser, async function(req, res) {
     await mongoClient.connect();
     const db = mongoClient.db("Users");
     const collection = db.collection("users");
@@ -368,7 +368,7 @@ app.post("/api/products/add/homework", urlencodedParser, async function(req, res
 
  
 })
-app.get('/products/homework', urlencodedParser, async function (req, res) {
+app.get('/homework', urlencodedParser, async function (req, res) {
     await mongoClient.connect();
     const db = mongoClient.db("Users");
     const collection = db.collection("homeworks");
@@ -432,4 +432,4 @@ app.use("/products", productRouter);
 //         process.exit();  
 //  });
 run().catch(console.error);
-app.listen(3001, ()=>console.log("Сервер запущен..."));            
+app.listen(3001, ()=>console.log("Сервер запущен..."));                        
