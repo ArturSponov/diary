@@ -12,7 +12,7 @@ app.use(express.static(path.resolve(__dirname + '/public')))
 const productRouter = express.Router();
 const MongoClient = require("mongodb").MongoClient;
 const urlencodedParser = express.urlencoded({extended: false});
-const url = 'mongodb+srv://kamartur778:<oPaOj6qOYXecSdPS>@cluster0.pxcvidg.mongodb.net/';
+const url = 'mongodb+srv://kamartur778:oPaOj6qOYXecSdPS@cluster0.pxcvidg.mongodb.net/';
     
 const mongoClient = new MongoClient(url);  
 const objectId = require("mongodb").ObjectId;
