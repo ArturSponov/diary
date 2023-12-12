@@ -22,7 +22,7 @@ const mongoose = require("mongoose")
 const urlencodedParser = express.urlencoded({extended: false})
 
 
-// const url = 'mongodb+srv://kamartur778:oPa0j6q0YXecSdPS@cluster0.pxcvidg.mongodb.net/';
+const url = 'mongodb+srv://kamartur778:oPa0j6q0YXecSdPS@cluster0.pxcvidg.mongodb.net/';
 // const url = "mongodb://127.0.0.1:27017/";
 
 const keys = require('./config/bd')
