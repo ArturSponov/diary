@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: billabong;
+            font-family: Kanji_PA;
+    src: url(./billabong.ttf); /* Путь к файлу со шрифтом */
+    src: url(./Kanji_PA.ttf); /* Путь к файлу со шрифтом */
+
+   }
+        body {
+            margin: 0;
+        }
+        .hall {
+           
+            background: rgba(0,0,0,1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 57%;
+    height: 410px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+    backdrop-filter: blur(2px);
+    border-radius: 15px;
+    margin-top: 121px;
+        }
+        .hall:hover {                        
+            
+            backdrop-filter: blur(8px);
+        }
+        .hello {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+            font-size: 30px;
+            font-weight: bolder;    
+            color: #EAE1D4;
+
+}
+.textlogo {
+    font-family: Kanji_Pa;
+    font-size: 40px;
+    font-weight: 700;
+}
+body {
+    overflow-x: hidden;
+}
+.header {
+    width: 100%;
+    height: 150px;
+    border-radius: 0 0 15px 15px;
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    border-top: 2px solid grey;
+    border-left: 2px solid grey;
+    border-bottom: 2px solid grey;
+    border-right: none;
+
+}
+.logo {
+    width: 15%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 2px solid grey;
+}
+
+.inhall {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+height: 330px;
+}
+.athall {
+    width: 100%;
+    height: 586px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(234,76,55,1);
+}
+.leg {
+    width: 58%;
+    height: 45px;
+    background-color: #EAE1D4;
+    border: 3px grey solid;
+    border-radius: 20px;
+}
+.leg::placeholder {
+    text-align: center;
+    color: grey;
+    font: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+.myt {
+    width: 58%;
+    height: 45px;
+    background-color: #EAE1D4;
+    border: 3px grey solid;
+    border-radius: 20px;
+}
+.myt::placeholder {
+    text-align: center;
+    color: grey;
+    font: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+.epic {
+    width: 40%;
+    height: 45px;
+    background: #00c23d;
+    border: 3px darkolivegreen solid;
+    border-radius: 20px;
+}
+.epic::placeholder {
+    text-align: center;
+    color: grey;
+    font: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+.dlyaknopok {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 58%;
+    height: 50px;
+}
+.clear {
+    width: 40%;
+    height: 45px;
+    background: #ea4c37;
+    border: 3px darkred solid;
+    border-radius: 20px;
+}
+.samul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+
+}
+.menu {
+    width: 60%;
+    height: 149px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.podul1 {
+    width:13%;
+    height: 149px;
+    border-bottom:2px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/home.png);
+    background-size: 30%;
+   background-repeat: no-repeat;
+   background-position: center;
+   transition: all 0.6s ease-in-out;
+   background-color: white;
+}
+.podul2 {
+    width:13%;
+    height: 149px;
+    border-bottom:2px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/newspaper.png);
+    background-size: 30%;
+   background-repeat: no-repeat;
+   background-position: center;
+   transition: all 0.6s ease-in-out;
+   background-color: white;
+
+}
+.podul3 {
+    width:13%;
+    height: 149px;
+    border-bottom:2px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/add-image.png);
+    background-size: 30%;
+   background-repeat: no-repeat;
+   background-position: center;
+   transition: all 0.6s ease-in-out;
+   background-color: white;
+
+}
+.podul4 {
+    width:13%;
+    height: 149px;
+    border-bottom:2px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/diary.png);
+    background-size: 30%;
+   background-repeat: no-repeat;
+   background-position: center;
+   transition: all 0.6s ease-in-out;
+   background-color: white;
+
+}
+.podul5 {
+    width:13%;
+    height: 149px;
+    border-bottom:2px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/add-friend.png);
+    background-size: 30%;
+   background-repeat: no-repeat;
+   background-position: center;
+   transition: all 0.6s ease-in-out;
+   background-color: white;
+}
+.podul1:hover {
+    height: 80px;
+    background-position: center;
+    border-bottom: grey 2px solid;
+}
+.podul2:hover {
+    height: 80px;
+    background-position: center;
+    border-bottom: grey 2px solid;
+}
+.podul3:hover {
+    height: 80px;
+    background-position: center;
+    border-bottom: grey 2px solid;
+}
+.podul4:hover {
+    height: 80px;
+    border-bottom: grey 2px solid;
+    background-position: center;
+}
+.podul5:hover {
+    height: 80px;
+    border-bottom: grey 2px solid;
+    background-position: center;
+}
+.podul1:hover .absolut1 {
+        transition: all 0.6s ease-in-out;
+           opacity: 1;
+
+}
+.podul2:hover .absolut2 {
+        transition: all 0.6s ease-in-out;
+               opacity: 1;
+
+
+}
+.podul3:hover .absolut3 {
+        transition: all 0.6s ease-in-out;
+       opacity: 1;
+
+}
+.podul4:hover .absolut4 {
+       opacity: 1;
+        
+        transition: all 0.6s ease-in-out;
+}
+.podul5:hover .absolut5 {
+    opacity: 1;
+        
+        transition: all 0.6s ease-in-out;
+}
+.locate {
+    position: absolute;
+    width: 261px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    left: 14px;
+    top: 173px;
+}
+.h21 {
+    color:white;
+    font-size: 30px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+
+}
+.h12 {
+    color:white;
+    font-weight: 400;
+    font-size: 25px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;   
+}
+.lang {
+    width: 15%;
+    height: 120px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.en {
+    width: 80%;
+    height: 40%;
+    background-color: grey;
+    border-radius: 15px;
+    border: 4px solid #EAE1D4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   transition: all 0.6s ease-in-out; 
+   color: white;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-weight: bold;
+   font-size: 16px; 
+}
+.ru {
+    width: 80%;
+    height: 40%;
+    background-color: grey;
+    border-radius: 15px;
+    border: 4px solid #EAE1D4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   transition: all 0.6s ease-in-out;
+   color: white;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-weight: bold;
+   font-size: 16px; 
+}
+.en:hover {
+    width: 80%;
+    height: 40%;
+    background-color: white;
+    border-radius: 15px;
+    border: 4px solid #EAE1D4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   transition: all 0.6s ease-in-out;
+   color: black;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-weight: bold;
+   font-size: 16px; 
+}
+.ru:hover {
+    width: 80%;
+    height: 40%;
+    background-color: white;
+    border-radius: 15px;
+    border: 4px solid #EAE1D4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   transition: all 0.6s ease-in-out;
+   color: black;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-weight: bold;
+   font-size: 16px; 
+   
+}
+.absolut1 {
+    width: 67px;
+    height: 33px;
+      opacity: 0;
+
+    text-align: center;
+    position: absolute;
+    top: 116px;
+        transition: all 0.6s ease-in-out;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    left: 419px;
+    font-weight: 700;
+}
+.absolut2 {
+    width: 67px;
+    height: 33px;
+      opacity: 0;
+         
+
+    text-align: center;
+    position: absolute;
+    top: 116px;
+        transition: all 0.6s ease-in-out;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    left: 587px;
+    font-weight: 700;
+
+}
+.absolut3 {
+    width: 67px;
+    height: 33px;
+      opacity: 0;
+     
+
+    text-align: center;
+    position: absolute;
+    top: 116px;
+        transition: all 0.6s ease-in-out;
+    font-weight: 700;
+    left: 755px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.absolut4 {
+    width: 67px;
+    height: 33px;
+      opacity: 0;
+      
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 116px;
+        transition: all 0.6s ease-in-out;
+    font-weight: 700;
+    left: 920px;
+}
+.absolut5 {
+    width: 67px;
+    height: 33px;
+      opacity: 0;
+      
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 116px;
+        transition: all 0.6s ease-in-out;
+    font-weight: 700;
+    left: 1082px;
+}
+.popi {
+        width: 414px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    height: 229px;
+}
+.f2 {
+    background-image: url(/animated.gif);
+    background-position: center;
+    width: 45%;
+    border-radius: 15px;
+    height: 400px;
+    background-size: 68%;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+.f1 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    width: 45%;
+    border-radius: 15px;
+    height: 400px;
+}
+.firts {
+    width: 100%;
+    height: 410px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+
+}
+.pi1 {
+    font-size: 35px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    color: white;
+}
+.pi2 {
+    font-size: 20px ;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <p class="textlogo">Diary</p>
+        </div>
+        <div class="menu">
+            <ul class="samul">
+                <li class="podul1">
+                    <div class="absolut1">
+                        Главная
+                        </div>
+                </li>
+                <li class="podul2">
+                    <div class="absolut2">Новости</div>
+
+                </li>
+                <li class="podul3">
+                    <div class="absolut3">Галерея</div>
+
+                </li>
+                <li class="podul4">
+                    <div class="absolut4">Домашка</div>
+
+                </li>
+                <li class="podul5">
+                    <div class="absolut5">Добавить</div>
+                </li>
+            </ul>
+            
+        </div>
+        <div class="lang">
+                <div class="en">EN</div>
+                <div class="ru">RU</div>
+            </div>
+    </div>
+    <div class="athall">
+        <div class="firts">
+            <div class="f1">
+                <div class="inf1"><p class="pi1">Новый дневник</p></div>
+                <div class="inf2"><p class="pi2">"Приветствуем будущее с новым электронным дневником следующего поколения! Интуитивный интерфейс, умные напоминания, безопасное облачное хранение данных. Встречайте современный опыт ведения записей: автоматизированные отчёты, мгновенный доступ через устройства, персонализированные виджеты. Ваш личный помощник в достижении целей и организации жизни!"</p></div>
+            </div>
+            <div class="f2"></div>
+        </div>
+ 
+        <div class="locate">
+            <p class="h21">Главная</p>
+        </div>
+    </div>
+    
+<script>
+    let pi1 = document.querySelector(".pi1");
+    let pi2 = document.querySelector(".pi2");
+
+    let podul2 = document.querySelector(".podul2")
+    let podul3 = document.querySelector(".podul3")
+    let podul4 = document.querySelector(".podul4")
+    let podul5 = document.querySelector(".podul5")
+
+    let h21 = document.querySelector(".h21")
+    let h12 = document.querySelector(".h12")
+    let clear = document.querySelector(".clear")
+    let hello = document.querySelector(".hello")
+    let submit = document.querySelector(".submit")
+    let absolut1 = document.querySelector(".absolut1")
+    let absolut2 = document.querySelector(".absolut2")
+    let absolut3 = document.querySelector(".absolut3")
+    let absolut4 = document.querySelector(".absolut4")
+    let absolut5 = document.querySelector(".absolut5")
+
+    let en = document.querySelector(".en")
+    let ru = document.querySelector(".ru")
+    en.addEventListener("click", function (){
+        h21.innerHTML = "Home "
+        absolut5.innerHTML = "Add"
+        pi1.innerHTML = "New GEN Diary"
+        pi2.innerHTML = "Welcome to the future with the new next generation digital diary! Intuitive interface, smart reminders, secure cloud storage. Meet the modern notetaking experience: automated reports, instant access across devices, personalized widgets. Your personal assistant in achieving goals and organizing your life!"
+        absolut1.innerHTML = "Main"
+        absolut2.innerHTML = "Newspaper"
+        absolut3.innerHTML = "Galery"
+        absolut4.innerHTML = "Homework"
+        console.log("dasdasdasdasdasdasdasdasdasd")
+    })
+    ru.addEventListener("click", function(){
+            h21.innerHTML = "Главная "
+        absolut5.innerHTML = "Добавить"
+        pi1.innerHTML = "Новый дневник"
+        pi2.innerHTML = "Приветствуем будущее с новым электронным дневником следующего поколения! Интуитивный интерфейс, умные напоминания, безопасное облачное хранение данных. Встречайте современный опыт ведения записей: автоматизированные отчёты, мгновенный доступ через устройства, персонализированные виджеты. Ваш личный помощник в достижении целей и организации жизни!"
+        absolut1.innerHTML = "Главная"
+        absolut2.innerHTML = "Новости"
+        absolut3.innerHTML = "Галерея"
+        absolut4.innerHTML = "Домашняя"
+        console.log("dasdasdasdasdasdasdasdasdasd")
+    })
+    podul2.addEventListener("click", function() {
+        window.location.href = "/newspaper"
+    })
+    podul3.addEventListener("click", function() {
+        window.location.href = "/galery"
+    })
+    podul4.addEventListener("click", function() {
+        window.location.href = "/add/homework"
+    })
+    podul5.addEventListener("click", function() {
+        window.location.href = "/add/registration"
+    })
+</script>
+</body>
+</html>
